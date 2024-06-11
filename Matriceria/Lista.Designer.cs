@@ -60,10 +60,11 @@
             this.Ot,
             this.Cliente,
             this.Cuit});
-            this.dataGridView1.Location = new System.Drawing.Point(21, 50);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 83);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(344, 149);
+            this.dataGridView1.Size = new System.Drawing.Size(345, 143);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Ot
             // 
@@ -72,12 +73,12 @@
             // 
             // Cliente
             // 
-            this.Cliente.HeaderText = "NombreCliente";
+            this.Cliente.HeaderText = "Nombre del cliente";
             this.Cliente.Name = "Cliente";
             // 
             // Cuit
             // 
-            this.Cuit.HeaderText = "Cuit";
+            this.Cuit.HeaderText = "CUIT";
             this.Cuit.Name = "Cuit";
             // 
             // Lista
