@@ -21,5 +21,10 @@ namespace Matriceria
         {
 
         }
+
+        private void Ots_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
