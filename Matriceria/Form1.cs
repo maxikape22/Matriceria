@@ -22,5 +22,11 @@ namespace Matriceria
             Lista s = new Lista();
             s.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Entregas entr = new Entregas();
+            entr.Show();
+        }
     }
 }
