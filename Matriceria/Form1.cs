@@ -28,5 +28,10 @@ namespace Matriceria
             Entregas entr = new Entregas();
             entr.Show();
         }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
