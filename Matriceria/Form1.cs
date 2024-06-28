@@ -47,7 +47,8 @@ namespace Matriceria
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Clientes cli = new Clientes();
+            cli.Show();
         }
     }
 }

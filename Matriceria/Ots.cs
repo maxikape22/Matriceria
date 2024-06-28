@@ -26,5 +26,11 @@ namespace Matriceria
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Areas ar = new Areas();
+            ar.Show();
+        }
     }
 }
