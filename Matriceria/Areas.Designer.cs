@@ -84,7 +84,7 @@
             "",
             "",
             "Total                                            40 Hs"});
-            this.listBox1.Location = new System.Drawing.Point(26, 163);
+            this.listBox1.Location = new System.Drawing.Point(36, 166);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(551, 173);
             this.listBox1.TabIndex = 3;
@@ -115,14 +115,14 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(251, 215);
+            this.dateTimePicker2.Location = new System.Drawing.Point(261, 215);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 11;
             // 
             // dateTimePicker3
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(251, 241);
+            this.dateTimePicker3.Location = new System.Drawing.Point(261, 241);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker3.TabIndex = 12;

@@ -54,18 +54,18 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(8, 106);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 38;
-            this.label11.Text = "Cuit / Dni";
+            this.label11.Text = "CUIT";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(8, 79);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 13);
+            this.label7.Size = new System.Drawing.Size(70, 13);
             this.label7.TabIndex = 34;
-            this.label7.Text = "Nombre/Razon Social";
+            this.label7.Text = "Razon Social";
             // 
             // label2
             // 
