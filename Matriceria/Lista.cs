@@ -19,8 +19,7 @@ namespace Matriceria
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            AreaPorOt area = new AreaPorOt();
-            area.Show();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

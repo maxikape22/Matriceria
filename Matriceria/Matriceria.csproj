@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaPorOt.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AreaPorOt.Designer.cs">
-      <DependentUpon>AreaPorOt.cs</DependentUpon>
-    </Compile>
     <Compile Include="Areas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,10 +90,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AreaPorOt.resx">
-      <DependentUpon>AreaPorOt.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Areas.resx">
       <DependentUpon>Areas.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +137,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\metalurgica.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Matriceria.Entidades\Matriceria.Entidades.csproj">
+      <Project>{6fa91033-77ad-4a2d-9754-52b7dc97987f}</Project>
+      <Name>Matriceria.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Matriceria.Negocios\Matriceria.Negocios.csproj">
+      <Project>{d6e6d49e-788d-4442-bf45-334b3114a332}</Project>
+      <Name>Matriceria.Negocios</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
