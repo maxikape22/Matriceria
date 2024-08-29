@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Areas));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtArea = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTiempo = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btRegistrarArea = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -61,12 +61,12 @@
             this.button1.Text = "Aceptar";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtArea
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtArea.Location = new System.Drawing.Point(96, 83);
+            this.txtArea.Name = "txtArea";
+            this.txtArea.Size = new System.Drawing.Size(100, 20);
+            this.txtArea.TabIndex = 2;
             // 
             // listBox1
             // 
@@ -99,12 +99,12 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Tiempo";
             // 
-            // textBox2
+            // txtTiempo
             // 
-            this.textBox2.Location = new System.Drawing.Point(96, 121);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtTiempo.Location = new System.Drawing.Point(96, 121);
+            this.txtTiempo.Name = "txtTiempo";
+            this.txtTiempo.Size = new System.Drawing.Size(100, 20);
+            this.txtTiempo.TabIndex = 5;
             // 
             // dateTimePicker1
             // 
@@ -127,14 +127,15 @@
             this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker3.TabIndex = 12;
             // 
-            // button2
+            // btRegistrarArea
             // 
-            this.button2.Location = new System.Drawing.Point(223, 98);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 32;
-            this.button2.Text = "Agregar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btRegistrarArea.Location = new System.Drawing.Point(223, 98);
+            this.btRegistrarArea.Name = "btRegistrarArea";
+            this.btRegistrarArea.Size = new System.Drawing.Size(75, 23);
+            this.btRegistrarArea.TabIndex = 32;
+            this.btRegistrarArea.Text = "Registrar";
+            this.btRegistrarArea.UseVisualStyleBackColor = true;
+            this.btRegistrarArea.Click += new System.EventHandler(this.btRegistrarArea_Click);
             // 
             // pictureBox1
             // 
@@ -151,15 +152,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 380);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btRegistrarArea);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtTiempo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtArea);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "Areas";
@@ -174,14 +175,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtArea;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTiempo;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btRegistrarArea;
     }
 }

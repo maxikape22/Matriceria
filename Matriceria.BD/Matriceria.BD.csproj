@@ -42,7 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatosConexionBD.cs" />
+    <Compile Include="ListaArea.cs" />
     <Compile Include="ListaCliente.cs" />
+    <Compile Include="ListaEntrega.cs" />
+    <Compile Include="ListaOrden.cs" />
+    <Compile Include="ListaPieza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

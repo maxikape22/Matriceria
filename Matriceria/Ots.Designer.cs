@@ -29,35 +29,34 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ots));
-            this.button1 = new System.Windows.Forms.Button();
+            this.btGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeFechaPrometido = new System.Windows.Forms.DateTimePicker();
             this.button5 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbPrioridad = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btGuardar
             // 
-            this.button1.Location = new System.Drawing.Point(250, 115);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 52);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btGuardar.Location = new System.Drawing.Point(250, 115);
+            this.btGuardar.Name = "btGuardar";
+            this.btGuardar.Size = new System.Drawing.Size(78, 52);
+            this.btGuardar.TabIndex = 0;
+            this.btGuardar.Text = "Guardar";
+            this.btGuardar.UseVisualStyleBackColor = true;
+            this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // label1
             // 
@@ -68,12 +67,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Prioridad";
             // 
-            // dateTimePicker1
+            // dateTimeFechaInicio
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(128, 210);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimeFechaInicio.Location = new System.Drawing.Point(128, 210);
+            this.dateTimeFechaInicio.Name = "dateTimeFechaInicio";
+            this.dateTimeFechaInicio.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFechaInicio.TabIndex = 2;
             // 
             // label2
             // 
@@ -102,16 +101,16 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Fecha de prometido";
             // 
-            // dateTimePicker2
+            // dateTimeFechaPrometido
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(128, 249);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 10;
+            this.dateTimeFechaPrometido.Location = new System.Drawing.Point(128, 249);
+            this.dateTimeFechaPrometido.Name = "dateTimeFechaPrometido";
+            this.dateTimeFechaPrometido.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFechaPrometido.TabIndex = 10;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(24, 335);
+            this.button5.Location = new System.Drawing.Point(24, 318);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(91, 23);
             this.button5.TabIndex = 13;
@@ -128,38 +127,22 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Código";
             // 
-            // dateTimePicker3
+            // cmbPrioridad
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(128, 284);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker3.TabIndex = 19;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 290);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Fecha de Entrega";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbPrioridad.FormattingEnabled = true;
+            this.cmbPrioridad.Items.AddRange(new object[] {
             "Alta",
             "Media",
             "Baja"});
-            this.comboBox1.Location = new System.Drawing.Point(101, 121);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 22;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbPrioridad.Location = new System.Drawing.Point(101, 121);
+            this.cmbPrioridad.Name = "cmbPrioridad";
+            this.cmbPrioridad.Size = new System.Drawing.Size(100, 21);
+            this.cmbPrioridad.TabIndex = 22;
+            this.cmbPrioridad.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(235, 334);
+            this.button2.Location = new System.Drawing.Point(235, 317);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 24);
             this.button2.TabIndex = 23;
@@ -167,12 +150,12 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox5
+            // txtCodigo
             // 
-            this.textBox5.Location = new System.Drawing.Point(101, 94);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 29;
+            this.txtCodigo.Location = new System.Drawing.Point(101, 94);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigo.TabIndex = 29;
             // 
             // pictureBox1
             // 
@@ -184,24 +167,24 @@
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
             // 
-            // comboBox2
+            // cmbEstado
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Items.AddRange(new object[] {
             "Abierta\t",
             "Cerrada",
             "Cancelada"});
-            this.comboBox2.Location = new System.Drawing.Point(101, 175);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(100, 21);
-            this.comboBox2.TabIndex = 31;
+            this.cmbEstado.Location = new System.Drawing.Point(101, 175);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(100, 21);
+            this.cmbEstado.TabIndex = 31;
             // 
-            // textBox1
+            // txtDescripcion
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 147);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 33;
+            this.txtDescripcion.Location = new System.Drawing.Point(101, 147);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
+            this.txtDescripcion.TabIndex = 33;
             // 
             // label3
             // 
@@ -217,24 +200,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 399);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker3);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cmbPrioridad);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dateTimeFechaPrometido);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimeFechaInicio);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btGuardar);
             this.Name = "Ots";
             this.Text = "Ots";
             this.Load += new System.EventHandler(this.Ots_Load);
@@ -246,23 +227,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btGuardar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimeFechaInicio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimeFechaPrometido;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbPrioridad;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label3;
     }
 }

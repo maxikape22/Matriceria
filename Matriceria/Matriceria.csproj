@@ -90,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarEntrega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEntrega.Designer.cs">
+      <DependentUpon>RegistrarEntrega.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Areas.resx">
       <DependentUpon>Areas.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +127,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RegistrarEntrega.resx">
+      <DependentUpon>RegistrarEntrega.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\Lista.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -25,7 +25,7 @@ namespace Matriceria
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Entregas entr = new Entregas();
+            RegistrarEntrega entr = new RegistrarEntrega();
             entr.Show();
         }
 
