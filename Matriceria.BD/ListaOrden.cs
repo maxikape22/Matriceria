@@ -1,80 +1,47 @@
 ﻿using Matriceria.Entidades;
-using System.Data.SqlClient;
-using System.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Matriceria.BD
 {
     public class ListaOrden : DatosConexionBD
     {
-        public int abmOrden(string accion, Orden objOrden)
+        public int InsertarOrden(string accion, Orden objOrden)
         {
             int resultado = -1;
-            string orden = string.Empty;
+            string procedimiento = string.Empty;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexion;
 
-            if (accion == "Alta")
-            {
-                orden = @"INSERT INTO Ordenes (id_orden, id_cliente, id_area, codigo, prioridad, descripcion, estado, fecha_inicio, fecha_prometido) 
-                      VALUES (@IdOrden, @IdCliente, @IdArea, @Codigo, @Prioridad, @Descripcion, @Estado, @FechaInicio, @FechaPrometido)";
-
-                cmd.CommandText = orden;
-                // Asignar los valores de los parámetros
-                cmd.Parameters.AddWithValue("@IdOrden", objOrden.IdOrden);
-                cmd.Parameters.AddWithValue("@IdCliente", objOrden.IdCliente);
-                cmd.Parameters.AddWithValue("@IdArea", objOrden.IdArea);
-                cmd.Parameters.AddWithValue("@Codigo", objOrden.Codigo);
-                cmd.Parameters.AddWithValue("@Prioridad", objOrden.Prioridad);
-                cmd.Parameters.AddWithValue("@Descripcion", objOrden.Descripcion);
-                cmd.Parameters.AddWithValue("@Estado", objOrden.Estado);
-                cmd.Parameters.AddWithValue("@FechaInicio", objOrden.Fecha_inicio);
-                cmd.Parameters.AddWithValue("@FechaPrometido", objOrden.Fecha_prometido);
-            }
-
-            if (accion == "Modificar")
-            {
-                orden = @"UPDATE Ordenes 
-                      SET id_cliente = @IdCliente, 
-                          id_area = @IdArea, 
-                          codigo = @Codigo, 
-                          prioridad = @Prioridad, 
-                          descripcion = @Descripcion, 
-                          estado = @Estado, 
-                          fecha_inicio = @FechaInicio, 
-                          fecha_prometido = @FechaPrometido 
-                      WHERE id_orden = @IdOrden";
-
-                cmd.CommandText = orden;
-                // Asignar los valores de los parámetros
-                cmd.Parameters.AddWithValue("@IdOrden", objOrden.IdOrden);
-                cmd.Parameters.AddWithValue("@IdCliente", objOrden.IdCliente);
-                cmd.Parameters.AddWithValue("@IdArea", objOrden.IdArea);
-                cmd.Parameters.AddWithValue("@Codigo", objOrden.Codigo);
-                cmd.Parameters.AddWithValue("@Prioridad", objOrden.Prioridad);
-                cmd.Parameters.AddWithValue("@Descripcion", objOrden.Descripcion);
-                cmd.Parameters.AddWithValue("@Estado", objOrden.Estado);
-                cmd.Parameters.AddWithValue("@FechaInicio", objOrden.Fecha_inicio);
-                cmd.Parameters.AddWithValue("@FechaPrometido", objOrden.Fecha_prometido);
-            }
-
-            if (accion == "Eliminar")
-            {
-                orden = @"DELETE FROM Ordenes WHERE id_orden = @IdOrden";
-
-                cmd.CommandText = orden;
-                cmd.Parameters.AddWithValue("@IdOrden", objOrden.IdOrden);
-            }
+            objOrden.Fecha_inicio = SqlDateTime.MinValue.Value;
+            objOrden.Fecha_prometido = SqlDateTime.MaxValue.Value;
 
             try
             {
                 Abrirconexion();
+
+                if (accion == "Alta")
+                {
+                    procedimiento = "sp_InsertarOrden";
+                    cmd.CommandText = procedimiento;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@codigo", objOrden.Codigo);
+                    cmd.Parameters.AddWithValue("@prioridad", objOrden.Prioridad);
+                    cmd.Parameters.AddWithValue("@descripcion", objOrden.Descripcion);
+                    cmd.Parameters.AddWithValue("@estado", objOrden.Estado);
+                    cmd.Parameters.AddWithValue("@fecha_inicio", objOrden.Fecha_inicio);
+                    cmd.Parameters.AddWithValue("@fecha_prometido", objOrden.Fecha_prometido);
+                }
+
                 resultado = cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                throw new Exception($"Error al tratar de guardar, borrar o modificar la orden {objOrden.Codigo}", e);
+                //throw new Exception($"Error al tratar de guardar, borrar o modificar la orden {objOrden.Codigo}", e);
+                throw new Exception(e.InnerException.Message);
             }
             finally
             {
@@ -85,10 +52,81 @@ namespace Matriceria.BD
             return resultado;
         }
 
-        public DataTable ListarOrdenes()
+        public int EliminarOrden(string codigo)
         {
-            string orden = "SELECT id_orden, id_cliente, id_area, codigo, prioridad, descripcion, estado, fecha_inicio, fecha_prometido FROM Ordenes";
-            SqlCommand cmd = new SqlCommand(orden, conexion);
+            int resultado = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conexion;
+
+            try
+            {
+                Abrirconexion();
+
+                string procedimiento = "sp_EliminarOrden";
+                cmd.CommandText = procedimiento;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@codigo", codigo);
+
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw new Exception($"Error al tratar de eliminar la orden de codigo:  {codigo}", e);
+                //throw new Exception(e.InnerException.Message);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+
+            return resultado;
+        }
+
+        public int ModificarOrden(Orden objOrden)
+        {
+            int resultado = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conexion;
+
+            try
+            {
+                Abrirconexion();
+
+                string procedimiento = "sp_ModificarOrden";
+                cmd.CommandText = procedimiento;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_orden", objOrden.IdOrden);
+                cmd.Parameters.AddWithValue("@codigo", objOrden.Codigo);
+                cmd.Parameters.AddWithValue("@prioridad", objOrden.Prioridad);
+                cmd.Parameters.AddWithValue("@descripcion", objOrden.Descripcion);
+                cmd.Parameters.AddWithValue("@estado", objOrden.Estado);
+                cmd.Parameters.AddWithValue("@fecha_inicio", objOrden.Fecha_inicio);
+                cmd.Parameters.AddWithValue("@fecha_prometido", objOrden.Fecha_prometido);
+
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error al tratar de modificar la orden {objOrden.Codigo}", e);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+
+            return resultado;
+        }
+
+        public DataTable FiltrarOrdenes(int idOrden)
+        {
+            string procedimiento = "sp_FiltrarOrdenes";
+            SqlCommand cmd = new SqlCommand(procedimiento, conexion);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id_orden", idOrden);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
 
@@ -99,7 +137,7 @@ namespace Matriceria.BD
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar las órdenes", e);
+                throw new Exception($"Error al filtrar las órdenes con ID {idOrden}", e);
             }
             finally
             {
@@ -110,21 +148,22 @@ namespace Matriceria.BD
             return dt;
         }
 
-        public DataTable FiltrarOrdenesPorCodigo(string codigo)
+
+        public DataSet FiltrarOrdenesPorCodigo(string codigo)
         {
-            SqlCommand cmd = new SqlCommand("FiltrarOrdenesPorCodigo", conexion);
+            SqlCommand cmd = new SqlCommand("sp_FiltrarOrdenesPorCodigo", conexion);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            // Asignar el parámetro del código
-            cmd.Parameters.AddWithValue("@Codigo", codigo);
+            // Asignar el parámetro del procedimiento almacenado
+            cmd.Parameters.AddWithValue("@codigo", codigo);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            DataSet ds = new DataSet(); // Crear un nuevo DataSet
 
             try
             {
-                Abrirconexion();
-                da.Fill(dt);
+                Abrirconexion(); // Abrir la conexión
+                da.Fill(ds); // Llenar el DataSet con los resultados del procedimiento almacenado
             }
             catch (Exception e)
             {
@@ -132,46 +171,36 @@ namespace Matriceria.BD
             }
             finally
             {
-                Cerrarconexion();
-                cmd.Dispose();
+                Cerrarconexion(); // Cerrar la conexión
+                cmd.Dispose(); // Liberar recursos del comando
             }
 
-            return dt;
+            return ds; // Devolver el DataSet
         }
 
         public List<Orden> ObtenerOrdenes()
         {
             List<Orden> lista = new List<Orden>();
-
-            string OrdenEjecucion = "SELECT id_orden, id_cliente, id_area, codigo, prioridad, descripcion, estado, fecha_inicio, fecha_prometido FROM Ordenes";
-
-            SqlCommand cmd = new SqlCommand(OrdenEjecucion, conexion);
+            SqlCommand cmd = new SqlCommand("sp_ListarOrdenes", conexion);
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader dataReader;
 
             try
             {
                 Abrirconexion();
-
                 dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
                 {
-                    // Aquí concatenamos código y prioridad similar a como lo hiciste con productos
-                    string codigo = dataReader.GetString(3);
-                    string prioridad = dataReader.GetString(4);
-                    string codigoPrioridad = $"{codigo} - {prioridad}";
-
                     Orden orden = new Orden();
 
-                    // Asignar valores a las propiedades de la clase Orden
-                    orden.IdOrden = dataReader.GetGuid(0);
-                    orden.IdCliente = dataReader.GetGuid(1);
-                    orden.IdArea = dataReader.GetGuid(2);
-                    orden.Codigo = codigoPrioridad;  // Asignar concatenación de código y prioridad
-                    orden.Descripcion = dataReader.GetString(5);
-                    orden.Estado = dataReader.GetString(6);
-                    orden.Fecha_inicio = dataReader.GetDateTime(7);
-                    orden.Fecha_prometido = dataReader.GetDateTime(8);
+                    orden.IdOrden = dataReader.GetInt32(0);                
+                    orden.Codigo = dataReader.GetString(1);               
+                    orden.Prioridad = dataReader.GetString(2);         
+                    orden.Descripcion = dataReader.GetString(3);         
+                    orden.Estado = dataReader.GetString(4);               
+                    orden.Fecha_inicio = dataReader.GetDateTime(5);      
+                    orden.Fecha_prometido = dataReader.GetDateTime(6);   
 
                     lista.Add(orden);
                 }
@@ -188,34 +217,5 @@ namespace Matriceria.BD
 
             return lista;
         }
-
-        public DataSet OrdenEliminar(string codigo)
-        {
-            string orden = $"DELETE FROM Ordenes WHERE id_orden = '{codigo}';";
-
-            SqlCommand cmd = new SqlCommand(orden, conexion);
-            DataSet ds = new DataSet();
-            SqlDataAdapter da = new SqlDataAdapter();
-
-            try
-            {
-                Abrirconexion();
-                cmd.ExecuteNonQuery(); // Ejecuta la consulta DELETE
-                da.SelectCommand = cmd;
-                da.Fill(ds); // Llena el DataSet (aunque después de un DELETE, probablemente esté vacío)
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error al eliminar la orden", e);
-            }
-            finally
-            {
-                Cerrarconexion();
-                cmd.Dispose();
-            }
-
-            return ds;
-        }
-
     }
 }

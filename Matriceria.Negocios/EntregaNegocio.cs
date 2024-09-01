@@ -1,6 +1,5 @@
 ﻿using Matriceria.BD;
 using Matriceria.Entidades;
-using System.Collections.Generic;
 using System.Data;
 
 namespace Matriceria.Negocios
@@ -9,29 +8,20 @@ namespace Matriceria.Negocios
     {
         ListaEntrega objDatosEntrega = new ListaEntrega();
 
-        public int abmEntrega(string accion, Entrega objEntrega)
+        public int InsertarEntrega(string accion, Entrega objDatos_Entrega)
         {
-            return objDatosEntrega.abmEntrega(accion, objEntrega);
-        }
-      
-        public List<Entrega> ObtenerEntrega()
-        {
-            return objDatosEntrega.ObtenerEntregas();
+            return objDatosEntrega.InsertarEntrega(accion,objDatos_Entrega);
         }
 
-        public DataSet FiltroEntrega(string cual)
+        public int EliminarEntrega(string codigoEntrega)
         {
-            return objDatosEntrega.ListarEntregasBuscar(cual);
-        }
-
-        public DataSet ListarEntregaEliminar(string codigo)
-        {
-            return objDatosEntrega.ListarEntregasEliminar(codigo);
+            return objDatosEntrega.EliminarEntrega(codigoEntrega);
         }
 
         public DataSet Union()
         {
             return objDatosEntrega.Union();
         }
+
     }
 }

@@ -39,7 +39,7 @@ namespace Matriceria
                 }
                 else
                 {
-                    MessageBox.Show("Se logró agregar al Producto con éxito");
+                    MessageBox.Show("Se logró agregar el cliente con éxito al sistema");
                     //LlenarDGVProducto();
                     //LimpiarProducto();
                     //LlenarCombos();

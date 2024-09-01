@@ -4,19 +4,19 @@ namespace Matriceria.Entidades
 {
     public class Area
     {
-        private Guid id_area;
-        private string nombrea_area;
+        private int id_area;
+        private string nombre_area;
         private int tiempo;
 
-        public Guid Id_area
+        public int Id_area
         {
             get { return id_area; }
             set { id_area = value; }
         }
-        public string Nombrea_area 
+        public string Nombre_area 
         {
-            get { return nombrea_area; }
-            set { nombrea_area = value; }
+            get { return nombre_area; }
+            set { nombre_area = value; }
         }
         public int Tiempo
         {
@@ -24,16 +24,13 @@ namespace Matriceria.Entidades
             set { tiempo = value; }
         }
       
-        public Area()
-        {
-            id_area = Guid.NewGuid(); 
-        }
-
         public Area(string nombre_area, int tiempo)
         {
-            this.id_area = Guid.NewGuid();  
-            this.nombrea_area = nombre_area;
+            this.id_area = Id_area;  
+            this.nombre_area = nombre_area;
             this.tiempo = tiempo;
         }
+
+        public Area() { }
     }
 }

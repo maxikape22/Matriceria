@@ -132,7 +132,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(43, 253);
+            this.label6.Location = new System.Drawing.Point(45, 253);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 13);
             this.label6.TabIndex = 55;
@@ -141,10 +141,6 @@
             // cmbMedioPago
             // 
             this.cmbMedioPago.FormattingEnabled = true;
-            this.cmbMedioPago.Items.AddRange(new object[] {
-            "Alta",
-            "Media",
-            "Baja"});
             this.cmbMedioPago.Location = new System.Drawing.Point(142, 210);
             this.cmbMedioPago.Name = "cmbMedioPago";
             this.cmbMedioPago.Size = new System.Drawing.Size(197, 21);

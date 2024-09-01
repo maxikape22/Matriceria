@@ -4,14 +4,14 @@ namespace Matriceria.Entidades
 {
     public class Cliente
     {
-        private Guid idCliente;
+        private int idCliente;
         private string razon_social;
         private int cuit;
         private string telefono;
         private string domicilio;
 
         // Propiedad para IdCliente, que se corresponde con la columna id_cliente en SQL
-        public Guid IdCliente
+        public int IdCliente
         {
             get { return idCliente; }
             set { idCliente = value; }
@@ -46,20 +46,18 @@ namespace Matriceria.Entidades
         }
 
         // Constructor por defecto
-        public Cliente()
-        {
-            idCliente = Guid.NewGuid();  // Genera automáticamente un nuevo GUID
-        }
-
+    
         // Constructor con parámetros
         public Cliente(string razonSocial, int cuit, string telefono, string domicilio)
         {
-            this.idCliente = Guid.NewGuid();  // Genera automáticamente un nuevo GUID
+            this.idCliente = IdCliente;  // Genera automáticamente un nuevo GUID
             this.razon_social = razonSocial;
             this.cuit = cuit;
             this.telefono = telefono;
             this.domicilio = domicilio;
         }
+
+        public Cliente() { }
     }
 
 }

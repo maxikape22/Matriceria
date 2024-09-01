@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Matriceria.Entidades;
+using Matriceria.Negocios;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Matriceria
@@ -8,22 +13,137 @@ namespace Matriceria
         public Lista()
         {
             InitializeComponent();
+            LlenarDgOrdenes();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public Orden objEntOrden = new Orden();
+        public OrdenNegocio objNegocioOrden = new OrdenNegocio();
+
+        private void btFiltroOT_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                // Captura el filtro del TextBox
+                string filtro = txtFiltroOT.Text.Trim();
+
+                // Obtiene la lista completa de órdenes
+                List<Orden> listaOrdenes = objNegocioOrden.ObtenerOrdenes();
+
+                // Limpia las filas existentes en el DataGridView
+                dgListaOrdenes.Rows.Clear();
+
+                // Verifica si la lista no es nula y contiene elementos
+                if (listaOrdenes != null && listaOrdenes.Count > 0)
+                {
+                    // Filtra la lista de órdenes por el código ingresado
+                    var ordenesFiltradas = listaOrdenes
+                        .Where(o => o.Codigo.Contains(filtro))  // Filtra por código
+                        .ToList();
+
+                    // Verifica si se encontraron órdenes filtradas
+                    if (ordenesFiltradas.Count > 0)
+                    {
+                        // Añade cada orden filtrada al DataGridView
+                        foreach (Orden orden in ordenesFiltradas)
+                        {
+                            dgListaOrdenes.Rows.Add(
+                                orden.Codigo,
+                                orden.Prioridad,
+                                orden.Descripcion,
+                                orden.Estado,
+                                orden.Fecha_inicio.ToShortDateString(),
+                                orden.Fecha_prometido.ToShortDateString()
+                            );
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron órdenes con el código proporcionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay órdenes disponibles para filtrar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar las órdenes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void btEliminarOT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validar si el código de la orden está ingresado
+                string codigo = txtFiltroOT.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(codigo))
+                {
+                    MessageBox.Show("Ingrese el código de la orden a eliminar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // Confirmar la eliminación con el usuario
+                DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar esta orden?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    // Llamar al método de eliminación en la capa de negocio
+                    int filasEliminadas = objNegocioOrden.EliminarOrden(codigo);
+
+                    if (filasEliminadas > 0)  // Asumiendo que un valor mayor a 0 indica éxito
+                    {
+                        MessageBox.Show("Orden eliminada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Opcional: Limpiar formulario, recargar datos, etc.
+                        LlenarDgOrdenes();  // Para actualizar la vista del DataGridView si es necesario
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se logró eliminar la orden. Verifique el código ingresado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar la orden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btImprimirOT_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void Lista_Load(object sender, EventArgs e)
+        private void LlenarDgOrdenes()
         {
-            dataGridView1.Rows.Add("22356","matriz tapitas","abierto", "17/01/2014", "17/01/2014", "4/03/2014");
-            dataGridView1.Rows.Add("59364","Cerradura","abierto","17/01/2014", "17/01/2014", "1/05/2014");
+            // Obtener lista de órdenes
+            List<Orden> listaOrdenes = objNegocioOrden.ObtenerOrdenes();
+
+            // Limpiar las filas existentes en el DataGridView
+            dgListaOrdenes.Rows.Clear();
+
+            // Asegúrate de que el DataGridView esté configurado correctamente para mostrar las columnas
+            // Si no lo está, puedes configurar las columnas manualmente aquí
+
+            if (listaOrdenes != null && listaOrdenes.Count > 0)
+            {
+                foreach (Orden orden in listaOrdenes)
+                {
+                    // Añadir cada orden como una nueva fila en el DataGridView
+                    dgListaOrdenes.Rows.Add(
+                        orden.Codigo,
+                        orden.Prioridad,
+                        orden.Descripcion,
+                        orden.Estado,
+                        orden.Fecha_inicio.ToShortDateString(), // Puedes ajustar el formato de la fecha si es necesario
+                        orden.Fecha_prometido.ToShortDateString() // Puedes ajustar el formato de la fecha si es necesario
+                    );
+                }
+            }
         }
+
     }
 }

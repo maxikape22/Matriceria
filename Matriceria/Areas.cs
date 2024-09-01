@@ -50,8 +50,13 @@ namespace Matriceria
 
         private void TxtBox_a_ObjArea()
         {
-            objEntArea.Nombrea_area = txtArea.Text;
+            objEntArea.Nombre_area = txtArea.Text;
             objEntArea.Tiempo = Convert.ToInt32(txtTiempo.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

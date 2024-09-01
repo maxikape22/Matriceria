@@ -18,21 +18,21 @@ namespace Matriceria.BD
 
             if (accion == "Alta")
             {
-                orden = @"INSERT INTO Areas (id_area, nombrea_area, tiempo) 
-                  VALUES (@Id_area, @Nombrea_area, @Tiempo)";
+                orden = @"INSERT INTO Areas (id_area, nombre_area, tiempo) 
+                  VALUES (@Id_area, @Nombre_area, @Tiempo)";
 
                 cmd.CommandText = orden;
 
                 // Asignar los valores de los parámetros
                 cmd.Parameters.AddWithValue("@Id_area", objArea.Id_area);
-                cmd.Parameters.AddWithValue("@Nombrea_area", objArea.Nombrea_area);
+                cmd.Parameters.AddWithValue("@Nombre_area", objArea.Nombre_area);
                 cmd.Parameters.AddWithValue("@Tiempo", objArea.Tiempo);
             }
 
             if (accion == "Modificar")
             {
                 orden = @"UPDATE Areas 
-                  SET nombrea_area = @Nombrea_area, 
+                  SET nombre_area = @Nombre_area, 
                       tiempo = @Tiempo 
                   WHERE id_area = @Id_area";
 
@@ -40,7 +40,7 @@ namespace Matriceria.BD
 
                 // Asignar los valores de los parámetros
                 cmd.Parameters.AddWithValue("@Id_area", objArea.Id_area);
-                cmd.Parameters.AddWithValue("@Nombrea_area", objArea.Nombrea_area);
+                cmd.Parameters.AddWithValue("@Nombre_area", objArea.Nombre_area);
                 cmd.Parameters.AddWithValue("@Tiempo", objArea.Tiempo);
             }
 
@@ -76,11 +76,11 @@ namespace Matriceria.BD
         {
             int resultado = -1;
             string orden = @"INSERT INTO Areas (id_area, nombrea_area, tiempo) 
-                         VALUES (@Id_area, @Nombrea_area, @Tiempo)";
+                         VALUES (@Id_area, @Nombre_area, @Tiempo)";
 
             SqlCommand cmd = new SqlCommand(orden, conexion);
             cmd.Parameters.AddWithValue("@Id_area", objArea.Id_area);
-            cmd.Parameters.AddWithValue("@Nombrea_area", objArea.Nombrea_area);
+            cmd.Parameters.AddWithValue("@Nombre_area", objArea.Nombre_area);
             cmd.Parameters.AddWithValue("@Tiempo", objArea.Tiempo);
 
             try
@@ -106,13 +106,13 @@ namespace Matriceria.BD
         {
             int resultado = -1;
             string orden = @"UPDATE Areas 
-                         SET nombrea_area = @Nombrea_area, 
+                         SET nombre_area = @Nombre_area, 
                              tiempo = @Tiempo 
                          WHERE id_area = @Id_area";
 
             SqlCommand cmd = new SqlCommand(orden, conexion);
             cmd.Parameters.AddWithValue("@Id_area", objArea.Id_area);
-            cmd.Parameters.AddWithValue("@Nombrea_area", objArea.Nombrea_area);
+            cmd.Parameters.AddWithValue("@Nombre_area", objArea.Nombre_area);
             cmd.Parameters.AddWithValue("@Tiempo", objArea.Tiempo);
 
             try
@@ -137,7 +137,7 @@ namespace Matriceria.BD
         public List<Area> ObtenerListarAreas()
         {
             List<Area> lista = new List<Area>();
-            string orden = "SELECT id_area, nombrea_area, tiempo FROM Areas";
+            string orden = "SELECT id_area, nombre_area, tiempo FROM Areas";
 
             SqlCommand cmd = new SqlCommand(orden, conexion);
             SqlDataReader dataReader;
@@ -151,8 +151,8 @@ namespace Matriceria.BD
                 {
                     Area area = new Area
                     {
-                        Id_area = dataReader.GetGuid(0),
-                        Nombrea_area = dataReader.GetString(1),
+                        Id_area = dataReader.GetInt32(0),
+                        Nombre_area = dataReader.GetString(1),
                         Tiempo = dataReader.GetInt32(2)
                     };
 

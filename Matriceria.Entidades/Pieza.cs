@@ -4,23 +4,16 @@ namespace Matriceria.Entidades
 {
     public class Pieza
     {
-        private Guid id_pieza;
-        private Guid id_area;
+        private int id_pieza;
         private string codigo;
         private string nombre;
         private string descripcion;
         private decimal precio;
 
-        public Guid Id_pieza
+        public int Id_pieza
         {
             get { return id_pieza; }
             set { id_pieza = value; }
-        }
-
-        public Guid Id_area
-        {
-            get { return id_area; }
-            set { id_area = value; }
         }
 
         public string Codigo
@@ -47,19 +40,15 @@ namespace Matriceria.Entidades
             set { precio = value; }
         }
 
-        public Pieza()
+        public Pieza(string codigo, string nombre, string descripcion, decimal precio)
         {
-            id_pieza = Guid.NewGuid();
-        }
-
-        public Pieza(Guid id_area, string codigo, string nombre, string descripcion, decimal precio)
-        {
-            this.id_pieza = Guid.NewGuid();
-            this.id_area = id_area;
+            this.id_pieza = Id_pieza;
             this.codigo = codigo;
             this.nombre = nombre;
             this.descripcion = descripcion;
             this.precio = precio;
         }
+
+        public Pieza() { }
     }
 }

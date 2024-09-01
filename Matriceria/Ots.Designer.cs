@@ -70,6 +70,8 @@
             // dateTimeFechaInicio
             // 
             this.dateTimeFechaInicio.Location = new System.Drawing.Point(128, 210);
+            this.dateTimeFechaInicio.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.dateTimeFechaInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimeFechaInicio.Name = "dateTimeFechaInicio";
             this.dateTimeFechaInicio.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFechaInicio.TabIndex = 2;
@@ -104,6 +106,8 @@
             // dateTimeFechaPrometido
             // 
             this.dateTimeFechaPrometido.Location = new System.Drawing.Point(128, 249);
+            this.dateTimeFechaPrometido.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.dateTimeFechaPrometido.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimeFechaPrometido.Name = "dateTimeFechaPrometido";
             this.dateTimeFechaPrometido.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFechaPrometido.TabIndex = 10;
@@ -130,11 +134,7 @@
             // cmbPrioridad
             // 
             this.cmbPrioridad.FormattingEnabled = true;
-            this.cmbPrioridad.Items.AddRange(new object[] {
-            "Alta",
-            "Media",
-            "Baja"});
-            this.cmbPrioridad.Location = new System.Drawing.Point(101, 121);
+            this.cmbPrioridad.Location = new System.Drawing.Point(101, 120);
             this.cmbPrioridad.Name = "cmbPrioridad";
             this.cmbPrioridad.Size = new System.Drawing.Size(100, 21);
             this.cmbPrioridad.TabIndex = 22;
@@ -170,11 +170,7 @@
             // cmbEstado
             // 
             this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Items.AddRange(new object[] {
-            "Abierta\t",
-            "Cerrada",
-            "Cancelada"});
-            this.cmbEstado.Location = new System.Drawing.Point(101, 175);
+            this.cmbEstado.Location = new System.Drawing.Point(101, 173);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(100, 21);
             this.cmbEstado.TabIndex = 31;

@@ -9,29 +9,33 @@ namespace Matriceria.Negocios
     {
         ListaOrden objDatosOrden = new ListaOrden();
 
-        public int abmOrden(string accion, Orden objOrden)
+        public int InsertarOrden(string accion, Orden objOrden)
         {
-            return objDatosOrden.abmOrden(accion, objOrden);
+            return objDatosOrden.InsertarOrden(accion, objOrden);
         }
-        public DataTable ListadoOrden()
+        public int EliminarOrden(string idOrden)
         {
-            return objDatosOrden.ListarOrdenes();
+            return objDatosOrden.EliminarOrden(idOrden);
         }
 
-        public List<Orden> ObtenerOrden()
+        public int ModificarOrden(Orden objOrden)
+        {
+            return objDatosOrden.ModificarOrden(objOrden);
+        }
+
+        public DataTable FiltrarOrdenes(int idOrden)
+        {
+            return objDatosOrden.FiltrarOrdenes(idOrden);
+        }
+
+        public DataSet FiltrarOrdenesPorCodigo(string codigo)
+        {
+            return objDatosOrden.FiltrarOrdenesPorCodigo(codigo);
+        }
+
+        public List<Orden> ObtenerOrdenes()
         {
             return objDatosOrden.ObtenerOrdenes();
         }
-
-        public DataTable FiltroOrden(string cual)
-        {
-            return objDatosOrden.FiltrarOrdenesPorCodigo(cual);
-        }
-
-        public DataSet ListarProductoEliminar(string codigo)
-        {
-            return objDatosOrden.OrdenEliminar(codigo);
-        }
-
     }
 }

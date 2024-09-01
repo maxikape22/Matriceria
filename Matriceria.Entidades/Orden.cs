@@ -4,9 +4,7 @@ namespace Matriceria.Entidades
 {
     public class Orden
     {
-        private Guid idOrden;
-        private Guid idCliente;
-        private Guid idArea;
+        private int idOrden;
         private string codigo;
         private string prioridad;
         private string descripcion;
@@ -14,22 +12,10 @@ namespace Matriceria.Entidades
         private DateTime fecha_inicio;
         private DateTime fecha_prometido;
 
-        public Guid IdOrden
+        public int IdOrden
         {
             get { return idOrden; }
             set { idOrden = value; }
-        }
-
-        public Guid IdCliente
-        {
-            get { return idCliente; }
-            set { idCliente = value; }
-        }
-
-        public Guid IdArea
-        {
-            get { return idArea; }
-            set { idArea = value; }
         }
 
         public string Codigo
@@ -68,19 +54,10 @@ namespace Matriceria.Entidades
             set { fecha_prometido = value; }
         }
 
-        public Orden()
-        {
-            idOrden = Guid.NewGuid();
-            idCliente = Guid.NewGuid();
-            idArea = Guid.NewGuid();
-        }
-
         public Orden(string codigo, string prioridad,string descripcion,string estado,
             DateTime fecha_inicio,DateTime fecha_prometido)
         {
-            this.idOrden = Guid.NewGuid();
-            this.idCliente = Guid.NewGuid();
-            this.idArea = Guid.NewGuid();
+            this.idOrden = IdOrden;
             this.codigo = codigo;
             this.prioridad = prioridad;
             this.descripcion = descripcion;
@@ -88,5 +65,7 @@ namespace Matriceria.Entidades
             this.fecha_inicio = fecha_inicio;
             this.fecha_prometido = fecha_prometido;
         }
+
+        public Orden() { }
     }
 }

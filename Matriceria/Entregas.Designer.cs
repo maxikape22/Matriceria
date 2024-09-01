@@ -30,11 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvEntrega = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btFiltroEntrega = new System.Windows.Forms.Button();
-            this.btEliminarEntrega = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtEntrega = new System.Windows.Forms.TextBox();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +38,11 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btFiltroEntrega = new System.Windows.Forms.Button();
+            this.btEliminarEntrega = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtEntrega = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntrega)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,11 +75,51 @@
             this.dgvEntrega.Size = new System.Drawing.Size(846, 141);
             this.dgvEntrega.TabIndex = 3;
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Código de entrega";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Código de orden";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Razon social cliente";
+            this.Column8.Name = "Column8";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Fecha de entrega";
+            this.Column1.Name = "Column1";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Hora de entrega";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Estado de la entrega";
+            this.Column5.Name = "Column5";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Medio de pago elegido";
+            this.Column3.Name = "Column3";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Entregado";
+            this.Column2.Name = "Column2";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(244, 21);
+            this.label1.Location = new System.Drawing.Point(324, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(317, 37);
             this.label1.TabIndex = 4;
@@ -122,46 +162,6 @@
             this.txtEntrega.Name = "txtEntrega";
             this.txtEntrega.Size = new System.Drawing.Size(254, 20);
             this.txtEntrega.TabIndex = 7;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Código de entrega";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Código de orden";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Razon social cliente";
-            this.Column8.Name = "Column8";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Fecha de entrega";
-            this.Column1.Name = "Column1";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Hora de entrega";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Estado de la entrega";
-            this.Column5.Name = "Column5";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Medio de pago elegido";
-            this.Column3.Name = "Column3";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Entregado";
-            this.Column2.Name = "Column2";
             // 
             // Entregas
             // 
