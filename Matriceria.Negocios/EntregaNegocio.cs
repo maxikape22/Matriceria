@@ -1,5 +1,6 @@
 ﻿using Matriceria.BD;
 using Matriceria.Entidades;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Matriceria.Negocios
@@ -18,10 +19,14 @@ namespace Matriceria.Negocios
             return objDatosEntrega.EliminarEntrega(codigoEntrega);
         }
 
-        public DataSet Union()
+        public List<Entrega> ObtenerEntregas()
         {
-            return objDatosEntrega.Union();
+            return objDatosEntrega.ObtenerEntregas();
         }
 
+        public DataSet FiltrarEntregasPorCodigo(string codigoEntrega)
+        {
+            return objDatosEntrega.FiltrarEntregasPorCodigo(codigoEntrega);
+        }
     }
 }

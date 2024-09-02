@@ -6,9 +6,10 @@ namespace Matriceria.Negocios
     public class PiezaNegocio
     {
         ListaPieza objDatosPieza = new ListaPieza();
-        public int abmPieza1(string accion, Pieza objPieza)
+
+        public int InsertarPieza(string accion, Pieza ObjPieza)
         {
-            return objDatosPieza.abmPieza(accion, objPieza);
+            return objDatosPieza.InsertarPieza(accion,ObjPieza);
         }
     }
 }

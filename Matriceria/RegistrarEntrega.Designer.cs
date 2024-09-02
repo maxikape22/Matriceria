@@ -42,20 +42,22 @@
             this.cmbMedioPago = new System.Windows.Forms.ComboBox();
             this.dateTimeFechaEntrega = new System.Windows.Forms.DateTimePicker();
             this.cmbEntregado = new System.Windows.Forms.ComboBox();
+            this.btListaEntregas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btRegresoInicio
             // 
-            this.btRegresoInicio.Location = new System.Drawing.Point(402, 161);
+            this.btRegresoInicio.Location = new System.Drawing.Point(391, 126);
             this.btRegresoInicio.Name = "btRegresoInicio";
             this.btRegresoInicio.Size = new System.Drawing.Size(86, 62);
             this.btRegresoInicio.TabIndex = 52;
             this.btRegresoInicio.Text = "Volver a inicio";
             this.btRegresoInicio.UseVisualStyleBackColor = true;
+            this.btRegresoInicio.Click += new System.EventHandler(this.btRegresoInicio_Click);
             // 
             // btGuardar
             // 
-            this.btGuardar.Location = new System.Drawing.Point(402, 76);
+            this.btGuardar.Location = new System.Drawing.Point(391, 64);
             this.btGuardar.Name = "btGuardar";
             this.btGuardar.Size = new System.Drawing.Size(86, 46);
             this.btGuardar.TabIndex = 51;
@@ -165,11 +167,22 @@
             this.cmbEntregado.Size = new System.Drawing.Size(197, 21);
             this.cmbEntregado.TabIndex = 59;
             // 
+            // btListaEntregas
+            // 
+            this.btListaEntregas.Location = new System.Drawing.Point(391, 209);
+            this.btListaEntregas.Name = "btListaEntregas";
+            this.btListaEntregas.Size = new System.Drawing.Size(86, 62);
+            this.btListaEntregas.TabIndex = 60;
+            this.btListaEntregas.Text = "Lista de entregas";
+            this.btListaEntregas.UseVisualStyleBackColor = true;
+            this.btListaEntregas.Click += new System.EventHandler(this.btListaEntregas_Click);
+            // 
             // RegistrarEntrega
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 309);
+            this.Controls.Add(this.btListaEntregas);
             this.Controls.Add(this.cmbEntregado);
             this.Controls.Add(this.dateTimeFechaEntrega);
             this.Controls.Add(this.cmbMedioPago);
@@ -207,5 +220,6 @@
         private System.Windows.Forms.ComboBox cmbMedioPago;
         private System.Windows.Forms.DateTimePicker dateTimeFechaEntrega;
         private System.Windows.Forms.ComboBox cmbEntregado;
+        private System.Windows.Forms.Button btListaEntregas;
     }
 }

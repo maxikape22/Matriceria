@@ -68,7 +68,7 @@ namespace Matriceria.BD
                 cmd.CommandText = procedimiento;
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@codigoEntrega", codigoEntrega);
+                cmd.Parameters.AddWithValue("@codigo_entrega", codigoEntrega);
 
                 resultado = cmd.ExecuteNonQuery(); // Ejecuta el procedimiento almacenado y devuelve el número de filas afectadas
             }
@@ -85,41 +85,6 @@ namespace Matriceria.BD
             return resultado;
         }
 
-        public DataSet Union()
-        {
-            // Nombre del procedimiento almacenado
-            string procedimiento = "sp_ObtenerEntregasConOrdenYCliente";
-
-            // Crear el comando para el procedimiento almacenado
-            SqlCommand cmd = new SqlCommand(procedimiento, conexion);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            // Configurar el DataSet y SqlDataAdapter
-            DataSet ds = new DataSet();
-            SqlDataAdapter da = new SqlDataAdapter();
-
-            try
-            {
-                Abrirconexion();
-
-                // Establecer el comando para el SqlDataAdapter
-                da.SelectCommand = cmd;
-
-                // Llenar el DataSet con los resultados del procedimiento almacenado
-                da.Fill(ds);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error al obtener las entregas con la información de órdenes y clientes", e);
-            }
-            finally
-            {
-                Cerrarconexion();
-                cmd.Dispose();
-            }
-
-            return ds;
-        }
 
         public List<Entrega> ObtenerEntregas()
         {
@@ -135,17 +100,14 @@ namespace Matriceria.BD
 
                 while (dataReader.Read())
                 {
-                    Entrega entrega = new Entrega
-                    {
-                        CodigoEntrega = dataReader.GetString(0),             // Código de Entrega
-                        FechaEntrega = dataReader.GetDateTime(1),            // Fecha de Entrega
-                        HorarioEntrega = dataReader.GetString(2),            // Horario de Entrega
-                        EstadoEntrega = dataReader.GetString(3),             // Estado de Entrega
-                        MedioDePago = dataReader.GetString(4),               // Medio de Pago
-                        Entregado = dataReader.GetString(5),                 // Entregado
-                        //CodigoOrden = dataReader.GetString(6),               // Código de Orden
-                        //RazonSocial = dataReader.GetString(7)                // Razón Social del Cliente
-                    };
+                    Entrega entrega = new Entrega();
+
+                    entrega.CodigoEntrega = dataReader.GetString(0);             // Campo de Entrega
+                    entrega.FechaEntrega = dataReader.GetDateTime(1);            // Fecha de Entrega
+                    entrega.HorarioEntrega = dataReader.GetString(2);            // Horario de Entrega
+                    entrega.EstadoEntrega = dataReader.GetString(3);             // Estado de Entrega
+                    entrega.MedioDePago = dataReader.GetString(4);               // Medio de Pago
+                    entrega.Entregado = dataReader.GetString(5);                // Entregado
 
                     lista.Add(entrega);
                 }
@@ -161,6 +123,36 @@ namespace Matriceria.BD
             }
 
             return lista;
+        }
+
+        public DataSet FiltrarEntregasPorCodigo(string codigoEntrega)
+        {
+            SqlCommand cmd = new SqlCommand("sp_FiltrarEntregas", conexion);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // Asignar el parámetro del procedimiento almacenado
+            cmd.Parameters.AddWithValue("@codigo_entrega", codigoEntrega);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet(); // Crear un nuevo DataSet
+
+            try
+            {
+                Abrirconexion(); // Abrir la conexión
+                da.Fill(ds); // Llenar el DataSet con los resultados del procedimiento almacenado
+            }
+            catch (Exception e)
+            {
+                //throw new Exception("Error al filtrar las entregas por código", e);
+                throw new Exception($"{e.InnerException.Message}");
+            }
+            finally
+            {
+                Cerrarconexion(); // Cerrar la conexión
+                cmd.Dispose(); // Liberar recursos del comando
+            }
+
+            return ds; // Devolver el DataSet
         }
 
 

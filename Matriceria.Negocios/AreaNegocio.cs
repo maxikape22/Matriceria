@@ -8,14 +8,9 @@ namespace Matriceria.Negocios
     {
         ListaArea objDatosArea = new ListaArea();
 
-        public int abmArea(string accion, Area objArea)
+        public int InsertarArea(Area objArea)
         {
-            return objDatosArea.abmArea(accion, objArea);
+            return objDatosArea.InsertarArea(objArea);
         }
-        public List<Area> ObtenerListadoArea()
-        {
-            return objDatosArea.ObtenerListarAreas();
-        }
-       
     }
 }

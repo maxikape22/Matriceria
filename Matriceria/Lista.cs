@@ -3,6 +3,7 @@ using Matriceria.Negocios;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -114,6 +115,49 @@ namespace Matriceria
 
         private void btImprimirOT_Click(object sender, EventArgs e)
         {
+
+            try
+            {
+                // Obtener la lista de órdenes de trabajo desde la capa de datos
+                List<Orden> ordenes = objNegocioOrden.ObtenerOrdenes();
+
+                if (ordenes == null || ordenes.Count == 0)
+                {
+                    MessageBox.Show("No hay órdenes de trabajo para imprimir.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // Crear un diálogo de guardar archivo para seleccionar la ubicación y el nombre del archivo PDF
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Archivos PDF (*.pdf)|*.pdf";
+                    saveFileDialog.Title = "Guardar PDF de Órdenes de Trabajo";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string rutaArchivo = saveFileDialog.FileName;
+
+                        // Llamar al método en la capa de datos para generar el PDF
+                        byte[] pdfBytes = objNegocioOrden.GenerarPDFDeListaDeOrdenes(ordenes);
+
+                        if (pdfBytes != null)
+                        {
+                            // Guardar el archivo PDF en la ubicación seleccionada
+                            File.WriteAllBytes(rutaArchivo, pdfBytes);
+                            MessageBox.Show($"PDF generado y guardado como {rutaArchivo}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo generar el PDF.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al generar el PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
 

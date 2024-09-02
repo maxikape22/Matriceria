@@ -15,24 +15,40 @@ namespace Matriceria
             InitializeComponent();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private bool ValidacionCamposArea()
         {
+            // Validación del Nombre del Área
+            if (string.IsNullOrWhiteSpace(txtArea.Text))
+            {
+                MessageBox.Show("Ingrese el nombre del área", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            else if (txtArea.Text.Length > 100 || txtArea.Text.Length < 2)
+            {
+                MessageBox.Show("El nombre del área debe tener entre 2 y 100 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
 
-        }
+            // Validación del Tiempo
+            if (!int.TryParse(txtTiempo.Text, out int tiempo) || tiempo <= 0)
+            {
+                MessageBox.Show("Ingrese un tiempo válido (en minutos) mayor a 0", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
+            // Si todas las validaciones pasan, retorna true
+            return true;
         }
 
         private void btRegistrarArea_Click(object sender, EventArgs e)
         {
-            bool validar = true; //= ValidacionCamposProducto();
+            bool validar = ValidacionCamposArea();
             int nGrabados = -1;
             if (validar == true)
             {
                 TxtBox_a_ObjArea();
-                nGrabados = objNegocioArea.abmArea("Alta", objEntArea);
+                nGrabados = objNegocioArea.InsertarArea(objEntArea);
                 if (nGrabados == -1)
                 {
                     MessageBox.Show("No se logró agregar el área al sistema");
@@ -40,10 +56,6 @@ namespace Matriceria
                 else
                 {
                     MessageBox.Show("Se logró agregar el área con éxito");
-                    //LlenarDGVProducto();
-                    //LimpiarProducto();
-                    //LlenarCombos();
-                    //tabControl1.SelectTab(tabProducto);
                 }
             }
         }

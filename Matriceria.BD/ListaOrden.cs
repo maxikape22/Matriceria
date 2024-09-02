@@ -1,9 +1,12 @@
-﻿using Matriceria.Entidades;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Matriceria.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.IO;
 
 namespace Matriceria.BD
 {
@@ -194,13 +197,13 @@ namespace Matriceria.BD
                 {
                     Orden orden = new Orden();
 
-                    orden.IdOrden = dataReader.GetInt32(0);                
-                    orden.Codigo = dataReader.GetString(1);               
-                    orden.Prioridad = dataReader.GetString(2);         
-                    orden.Descripcion = dataReader.GetString(3);         
-                    orden.Estado = dataReader.GetString(4);               
-                    orden.Fecha_inicio = dataReader.GetDateTime(5);      
-                    orden.Fecha_prometido = dataReader.GetDateTime(6);   
+                    orden.IdOrden = dataReader.GetInt32(0);
+                    orden.Codigo = dataReader.GetString(1);
+                    orden.Prioridad = dataReader.GetString(2);
+                    orden.Descripcion = dataReader.GetString(3);
+                    orden.Estado = dataReader.GetString(4);
+                    orden.Fecha_inicio = dataReader.GetDateTime(5);
+                    orden.Fecha_prometido = dataReader.GetDateTime(6);
 
                     lista.Add(orden);
                 }
@@ -216,6 +219,72 @@ namespace Matriceria.BD
             }
 
             return lista;
+        }
+
+
+
+        //PARA OBTENER EN FORMATO PDF LA ORDEN DE TRABAJO
+
+        public DataTable ObtenerOrden(string codigo)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection())
+            {
+                using (SqlCommand command = new SqlCommand("sp_ObtenerOrdenTrabajo", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@codigo", codigo);
+
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(dataTable);
+                }
+            }
+
+            return dataTable;
+        }
+
+
+        public byte[] GenerarPDFDeListaDeOrdenes(List<Orden> ordenes)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                var document = new Document();
+                PdfWriter.GetInstance(document, memoryStream);
+
+                document.Open();
+
+                // Título del PDF
+                document.Add(new Paragraph("Lista de Órdenes de Trabajo"));
+
+                // Crear una tabla para mostrar las órdenes
+                PdfPTable table = new PdfPTable(6);
+                table.WidthPercentage = 100f;
+
+                // Agregar encabezados
+                table.AddCell("Código");
+                table.AddCell("Prioridad");
+                table.AddCell("Descripción");
+                table.AddCell("Estado");
+                table.AddCell("Fecha de inicio");
+                table.AddCell("Fecha prometido");
+
+                // Agregar datos de órdenes a la tabla
+                foreach (var orden in ordenes)
+                {
+                    table.AddCell(orden.Codigo);
+                    table.AddCell(orden.Prioridad);
+                    table.AddCell(orden.Descripcion);
+                    table.AddCell(orden.Estado);
+                    table.AddCell(orden.Fecha_inicio.ToString("yyyy-MM-dd HH"));
+                    table.AddCell(orden.Fecha_prometido.ToString("yyyy-MM-dd"));
+                }
+
+                document.Add(table);
+                document.Close();
+
+                return memoryStream.ToArray();
+            }
         }
     }
 }

@@ -37,5 +37,10 @@ namespace Matriceria.Negocios
         {
             return objDatosOrden.ObtenerOrdenes();
         }
+
+        public byte[] GenerarPDFDeListaDeOrdenes(List<Orden> ordenes)
+        {
+            return objDatosOrden.GenerarPDFDeListaDeOrdenes(ordenes);
+        }
     }
 }

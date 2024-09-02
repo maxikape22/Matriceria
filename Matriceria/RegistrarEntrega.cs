@@ -164,5 +164,16 @@ namespace Matriceria
             cmbEntregado.ValueMember = "Key";
         }
 
+        private void btListaEntregas_Click(object sender, EventArgs e)
+        {
+            Entregas entregas = new Entregas();
+            entregas.Show();
+        }
+
+        private void btRegresoInicio_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
     }
 }
